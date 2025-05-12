@@ -1,17 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Open+Sans:wght@300;400;600&family=Roboto+Mono:wght@300;400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  body {
+    @apply font-body text-neutral-dark bg-neutral-light m-0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+  
+  h1 {
+    @apply text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight tracking-tight;
+  }
+  
+  h2 {
+    @apply text-4xl md:text-5xl leading-tight tracking-tight;
+  }
+  
+  h3 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h4 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h5 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  h6 {
+    @apply text-lg md:text-xl;
+  }
+  
+  p {
+    @apply text-base leading-relaxed mb-4;
+  }
+  
+  a {
+    @apply text-primary transition-colors duration-300;
+  }
+  
+  a:hover {
+    @apply text-primary-light;
+  }
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+@layer components {
+  .container {
+    @apply px-4 mx-auto max-w-7xl;
+  }
+  
+  .section {
+    @apply py-16 md:py-24;
+  }
+  
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 transform;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-light hover:shadow-hover;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-neutral-dark hover:bg-secondary-light hover:shadow-hover;
+  }
+  
+  .btn-accent {
+    @apply bg-accent text-white hover:bg-accent-light hover:shadow-hover;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl p-6 shadow-soft transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply hover:shadow-hover hover:-translate-y-1;
+  }
+  
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20 shadow-glass;
+  }
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+}
+
+.metal-gradient {
+  @apply bg-gradient-to-b from-secondary-light via-secondary to-secondary-dark;
+}
+
+.section-title {
+  @apply text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-center;
+}
+
+.section-subtitle {
+  @apply text-xl md:text-2xl font-normal mb-12 text-center max-w-3xl mx-auto text-neutral;
 }
