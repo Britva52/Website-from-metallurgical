@@ -4,7 +4,7 @@ import Button from '../ui/Button';
 
 const HeroSection = () => {
   return (
-    <section className="relative h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen h-screen flex items-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -36,7 +36,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-heading leading-tight"
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-heading leading-tight hero-text"
           >
             Производство хирургических <span className="text-gradient">инструментов</span> высочайшего качества
           </motion.h1>
@@ -56,10 +56,10 @@ const HeroSection = () => {
             transition={{ delay: 0.8 }}
             className="flex flex-wrap gap-4"
           >
-            <Button variant="accent" size="lg">
+            <Button variant="accent" size="lg" className="btn-animate">
               Наша продукция
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-neutral-dark">
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-neutral-dark btn-animate">
               Связаться с нами
             </Button>
           </motion.div>
