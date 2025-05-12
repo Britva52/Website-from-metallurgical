@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import SectionTitle from '../ui/SectionTitle';
 import Button from '../ui/Button';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaCheckCircle } from 'react-icons/fa';
 
 const ContactSection = () => {
   const [ref, inView] = useInView({
@@ -17,6 +17,8 @@ const ContactSection = () => {
     phone: '',
     message: '',
   });
+  
+  const [showNotification, setShowNotification] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,13 +32,20 @@ const ContactSection = () => {
     e.preventDefault();
     // Form submission logic would go here
     console.log('Form submitted:', formData);
-    alert('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
+    setShowNotification(true);
+    
+    // Reset form
     setFormData({
       name: '',
       email: '',
       phone: '',
       message: '',
     });
+    
+    // Hide notification after 5 seconds
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 5000);
   };
 
   const contactInfo = [
@@ -76,6 +85,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
+            className="relative"
           >
             <div className="bg-white p-8 rounded-xl shadow-soft">
               <h3 className="text-2xl font-bold mb-6 font-heading">Отправить сообщение</h3>
@@ -143,6 +153,21 @@ const ContactSection = () => {
                 </Button>
               </form>
             </div>
+            
+            {/* Success Notification */}
+            <AnimatePresence>
+              {showNotification && (
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 50 }}
+                  className="fixed bottom-6 right-6 bg-accent text-white p-4 rounded-lg shadow-lg z-50 flex items-center"
+                >
+                  <FaCheckCircle className="mr-2 h-5 w-5" />
+                  <span>Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
 
           {/* Contact Information */}
